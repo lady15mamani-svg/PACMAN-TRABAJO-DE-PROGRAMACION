@@ -1,55 +1,58 @@
+import java.util.Scanner;
+
 public class Pacman {
-    private int x;
-    private int y;
+    private int posicionX;
+    private int posicionY;
 
     public Pacman(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.posicionX = x;
+        this.posicionY = y;
     }
 
     public int getX() {
-        return x;
+        return posicionX;
     }
 
     public int getY() {
-        return y;
+        return posicionY;
     }
 
-    public void mover(char tecla, int filas, int columnas) {
+    // Control del juego
+    public void jugar() {
+        Scanner teclado = new Scanner(System.in);
+        String movimiento;
 
-        int nuevaX = x;
-        int nuevaY = y;
+        System.out.println("\n=== CONTROLES PACMAN ===");
+        System.out.println("W = Arriba");
+        System.out.println("A = Izquierda");
+        System.out.println("S = Abajo");
+        System.out.println("D = Derecha");
+        System.out.println("Q = Salir");
 
-        switch (Character.toLowerCase(tecla)) {
+        do {
+            System.out.print("\nIngresa movimiento: ");
+            movimiento = teclado.next().toLowerCase();
 
-            case 'w':
-                nuevaX--;
-                break;
+            switch (movimiento) {
+                case "w":
+                    posicionX--;
+                    break;
+                case "a":
+                    posicionY--;
+                    break;
+                case "s":
+                    posicionX++;
+                    break;
+                case "d":
+                    posicionY++;
+                    break;
+                case "q":
+                    System.out.println("Saliendo del control de Pacman...");
+                    break;
+                default:
+                    System.out.println("Instruccion no valida.");
+            }
 
-            case 's':
-                nuevaX++;
-                break;
-
-            case 'a':
-                nuevaY--;
-                break;
-
-            case 'd':
-                nuevaY++;
-                break;
-
-            default:
-                System.out.println("Instrucción no válida. Usa W (arriba), A (izquierda), S (abajo), D (derecha) o Q para salir.");
-                return;
-        }
-
-        if (nuevaX > 0 && nuevaX < filas - 1 &&
-            nuevaY > 0 && nuevaY < columnas - 1) {
-
-            x = nuevaX;
-            y = nuevaY;
-        } else {
-            System.out.println("No puedes salir de los límites del tablero.");
-        }
+        } while (!movimiento.equals("q"));
     }
 }
