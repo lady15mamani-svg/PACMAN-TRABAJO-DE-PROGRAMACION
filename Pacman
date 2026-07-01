@@ -1,0 +1,55 @@
+public class Pacman {
+    private int x;
+    private int y;
+
+    public Pacman(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void mover(char tecla, int filas, int columnas) {
+
+        int nuevaX = x;
+        int nuevaY = y;
+
+        switch (Character.toLowerCase(tecla)) {
+
+            case 'w':
+                nuevaX--;
+                break;
+
+            case 's':
+                nuevaX++;
+                break;
+
+            case 'a':
+                nuevaY--;
+                break;
+
+            case 'd':
+                nuevaY++;
+                break;
+
+            default:
+                System.out.println("Instrucción no válida. Usa W (arriba), A (izquierda), S (abajo), D (derecha) o Q para salir.");
+                return;
+        }
+
+        if (nuevaX > 0 && nuevaX < filas - 1 &&
+            nuevaY > 0 && nuevaY < columnas - 1) {
+
+            x = nuevaX;
+            y = nuevaY;
+        } else {
+            System.out.println("No puedes salir de los límites del tablero.");
+        }
+    }
+}
