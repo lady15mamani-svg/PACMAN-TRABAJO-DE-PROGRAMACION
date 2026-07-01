@@ -1,4 +1,5 @@
 public class enemigo3 {
+
     private int posicionX;
     private int posicionY;
 
@@ -7,11 +8,37 @@ public class enemigo3 {
         this.posicionY = y;
     }
 
+    public void mover(int filas, int columnas) {
+
+        int direccion = (int)(Math.random() * 4);
+
+        switch (direccion) {
+
+            case 0: posicionX++; break; // abajo
+            case 1: posicionX--; break; // arriba
+            case 2: posicionY++; break; // derecha
+            case 3: posicionY--; break; // izquierda
+        }
+
+         if (posicionX <= 0) posicionX = 1;
+        if (posicionY <= 0) posicionY = 1;
+        if (posicionX >= filas - 1) posicionX = filas - 2;
+        if (posicionY >= columnas - 1) posicionY = columnas - 2;
+    }
+
     public int getX() {
         return posicionX;
     }
 
     public int getY() {
         return posicionY;
+    }
+
+    public void setX(int x) {
+        posicionX = x;
+    }
+
+    public void setY(int y) {
+        posicionY = y;
     }
 }
