@@ -16,8 +16,7 @@ public class Menu {
 
                 case 1:
                     System.out.println("\nIniciando juego...");
-                    // aquí luego llamas a tu lógica del juego
-                    break;
+                     break;
 
                 case 2:
                     System.out.println("Saliendo...");
