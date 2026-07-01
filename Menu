@@ -1,32 +1,78 @@
 import java.util.Scanner;
 
 public class Menu {
+
     public static void mostrarMenu() {
+
         Scanner teclado = new Scanner(System.in);
         int opcion;
 
         do {
-            System.out.println("\n===== MENU PACMAN =====");
-            System.out.println("1. Iniciar juego");
-            System.out.println("2. Salir");
-            System.out.print("Elige una opcion: ");
+
+            System.out.println("\n╔══════════════════════════════════════╗");
+            System.out.println("║          🎮 PACMAN EN JAVA 🎮        ║");
+            System.out.println("╠══════════════════════════════════════╣");
+            System.out.println("║  1. ▶️ Iniciar Juego                 ║");
+            System.out.println("║  2. 👻 Instrucciones                ║");
+            System.out.println("║  3. 👨‍💻 Créditos                    ║");
+            System.out.println("║  4. ❌ Salir                        ║");
+            System.out.println("╚══════════════════════════════════════╝");
+            System.out.print("👉 Seleccione una opción: ");
+
             opcion = teclado.nextInt();
 
             switch (opcion) {
 
                 case 1:
-                    System.out.println("\nIniciando juego...");
-                     break;
+                    System.out.println("\n======================================");
+                    System.out.println("      Cargando juego...");
+                    System.out.println("======================================");
+                    // Aquí llamas a tu juego
+                    break;
 
                 case 2:
-                    System.out.println("Saliendo...");
+                    System.out.println("\n========== INSTRUCCIONES ==========");
+                    System.out.println("• Usa las flechas para moverte.");
+                    System.out.println("• Come todos los puntos del mapa.");
+                    System.out.println("• Evita a los enemigos.");
+                    System.out.println("• Si pierdes todas las vidas, termina el juego.");
+                    System.out.println("===================================");
+
+                    System.out.print("\nPresione ENTER para volver...");
+                    teclado.nextLine();
+                    teclado.nextLine();
+                    break;
+
+                case 3:
+                    System.out.println("\n========== CRÉDITOS ==========");
+                    System.out.println("      UNIVERSIDAD");
+                    System.out.println();
+                    System.out.println("Proyecto : PACMAN");
+                    System.out.println("Curso    : Programación");
+                    System.out.println();
+                    System.out.println("Desarrolladores:");
+                    System.out.println("★ Juan Elías");
+                    System.out.println("★ Saory");
+                    System.out.println("==============================");
+
+                    System.out.print("\nPresione ENTER para volver...");
+                    teclado.nextLine();
+                    teclado.nextLine();
+                    break;
+
+                case 4:
+                    System.out.println("\n======================================");
+                    System.out.println(" Gracias por jugar PACMAN");
+                    System.out.println(" ¡Hasta la próxima!");
+                    System.out.println("======================================");
                     break;
 
                 default:
-                    System.out.println("Opcion invalida.");
+                    System.out.println("\n⚠️ Opción inválida.");
+                    System.out.println("Intente nuevamente.");
             }
 
-        } while (opcion != 2);
+        } while (opcion != 4);
 
         teclado.close();
     }
