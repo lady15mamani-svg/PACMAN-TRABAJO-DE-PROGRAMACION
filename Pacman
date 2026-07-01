@@ -17,8 +17,7 @@ public class Pacman {
         return posicionY;
     }
 
-    // Control del juego
-    public void jugar() {
+     public void jugar() {
         Scanner teclado = new Scanner(System.in);
         String movimiento;
 
