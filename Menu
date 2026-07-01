@@ -1,88 +1,34 @@
-Menu
+import java.util.Scanner;
 
-class Menu {
-
-    public void mostrar() {
-
-        Scanner sc = new Scanner(System.in);
+public class Menu {
+    public static void mostrarMenu() {
+        Scanner teclado = new Scanner(System.in);
         int opcion;
 
         do {
-
-            System.out.println("\n=========================");
-            System.out.println("        PACMAN");
-            System.out.println("=========================");
-            System.out.println("1. Jugar");
-            System.out.println("2. Instrucciones");
-            System.out.println("3. Créditos");
-            System.out.println("4. Salir");
-            System.out.print("Opción: ");
-
-            opcion = sc.nextInt();
+            System.out.println("\n===== MENU PACMAN =====");
+            System.out.println("1. Iniciar juego");
+            System.out.println("2. Salir");
+            System.out.print("Elige una opcion: ");
+            opcion = teclado.nextInt();
 
             switch (opcion) {
 
                 case 1:
-
-                    System.out.println("\n--- CONFIGURACIÓN ---");
-
-                    System.out.print("Filas: ");
-                    int filas = sc.nextInt();
-
-                    System.out.print("Columnas: ");
-                    int columnas = sc.nextInt();
-
-                    Tablero tablero = new Tablero(filas, columnas);
-
-                    Pacman pacman = new Pacman(1, 1);
-
-                    enemigo1 e1 = new enemigo1(3, 3);
-                    enemigo2 e2 = new enemigo2(2, 5);
-                    enemigo3 e3 = new enemigo3(5, 5);
-
-                    while (true) {
-
-                        tablero.mostrarTablero(pacman, e1, e2, e3);
-
-                        System.out.print("Movimiento (WASD, Q salir): ");
-                        String mov = sc.next().toUpperCase();
-
-                        if (mov.equals("Q")) {
-                            break;
-                        }
-
-                        pacman.mover(mov, filas, columnas, e1, e2, e3);
-
-                        e1.mover(filas, columnas);
-                        e2.mover(filas, columnas);
-                        e3.mover(filas, columnas);
-                    }
-
+                    System.out.println("\nIniciando juego...");
+                    // aquí luego llamas a tu lógica del juego
                     break;
 
                 case 2:
-                    System.out.println("\nINSTRUCCIONES");
-                    System.out.println("- Usa W para arriba.");
-                    System.out.println("- Usa A para izquierda.");
-                    System.out.println("- Usa S para abajo.");
-                    System.out.println("- Usa D para derecha.");
-                    System.out.println("- Presiona Q para salir de la partida.");
-                    break;
-
-                case 3:
-                    System.out.println("\nProyecto Pacman en Java.");
-                    break;
-
-                case 4:
                     System.out.println("Saliendo...");
                     break;
 
                 default:
-                    System.out.println("Opción inválida.");
+                    System.out.println("Opcion invalida.");
             }
 
-        } while (opcion != 4);
+        } while (opcion != 2);
 
-        sc.close();
+        teclado.close();
     }
 }
