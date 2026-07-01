@@ -1,44 +1,32 @@
-public class enemigo3 {
+static class enemigo3 {
 
-    private int posicionX;
-    private int posicionY;
+    private int x, y;
 
-    public enemigo3(int x, int y) {
-        this.posicionX = x;
-        this.posicionY = y;
+    public enemigo2(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
-    public void mover(int filas, int columnas) {
+    public void mover(Pacman p, int filas, int columnas) {
 
-        int direccion = (int)(Math.random() * 4);
+        // 🔥 se mueve solo a veces (más jugable)
+        int chance = (int)(Math.random() * 2);
 
-        switch (direccion) {
+        if (chance == 0) {
 
-            case 0: posicionX++; break; // abajo
-            case 1: posicionX--; break; // arriba
-            case 2: posicionY++; break; // derecha
-            case 3: posicionY--; break; // izquierda
+            if (p.getX() > x) x++;
+            else if (p.getX() < x) x--;
+
+            if (p.getY() > y) y++;
+            else if (p.getY() < y) y--;
         }
 
-         if (posicionX <= 0) posicionX = 1;
-        if (posicionY <= 0) posicionY = 1;
-        if (posicionX >= filas - 1) posicionX = filas - 2;
-        if (posicionY >= columnas - 1) posicionY = columnas - 2;
+        if (x <= 0) x = 1;
+        if (y <= 0) y = 1;
+        if (x >= filas - 1) x = filas - 2;
+        if (y >= columnas - 1) y = columnas - 2;
     }
 
-    public int getX() {
-        return posicionX;
-    }
-
-    public int getY() {
-        return posicionY;
-    }
-
-    public void setX(int x) {
-        posicionX = x;
-    }
-
-    public void setY(int y) {
-        posicionY = y;
-    }
+    public int getX() { return x; }
+    public int getY() { return y; }
 }
