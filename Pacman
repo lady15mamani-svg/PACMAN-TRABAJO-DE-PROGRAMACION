@@ -1,12 +1,49 @@
-import java.util.Scanner;
-
 public class Pacman {
+
     private int posicionX;
     private int posicionY;
+    private boolean vivo = true;
 
     public Pacman(int x, int y) {
         this.posicionX = x;
         this.posicionY = y;
+    }
+
+    // ================= MOVIMIENTO =================
+    public void mover(char tecla, int filas, int columnas) {
+
+        System.out.println("Mover: W = arriba | S = abajo | A = izquierda | D = derecha");
+
+        switch (tecla) {
+
+            case 'w': posicionX--; break;
+            case 's': posicionX++; break;
+            case 'a': posicionY--; break;
+            case 'd': posicionY++; break;
+        }
+
+        // ================= COLISIÓN CON PAREDES =================
+        if (posicionX <= 0) posicionX = 1;
+        if (posicionY <= 0) posicionY = 1;
+        if (posicionX >= filas - 1) posicionX = filas - 2;
+        if (posicionY >= columnas - 1) posicionY = columnas - 2;
+    }
+
+    // ================= COLISIÓN CON ENEMIGOS =================
+    public void verificarColision(enemigo1 e1, enemigo2 e2, enemigo3 e3) {
+
+        if ((posicionX == e1.getX() && posicionY == e1.getY()) ||
+            (posicionX == e2.getX() && posicionY == e2.getY()) ||
+            (posicionX == e3.getX() && posicionY == e3.getY())) {
+
+            vivo = false;
+
+            System.out.println("☠☠☠ ESTÁS MUERTO ☠☠☠");
+        }
+    }
+
+    public boolean estaVivo() {
+        return vivo;
     }
 
     public int getX() {
@@ -15,43 +52,5 @@ public class Pacman {
 
     public int getY() {
         return posicionY;
-    }
-
-     public void jugar() {
-        Scanner teclado = new Scanner(System.in);
-        String movimiento;
-
-        System.out.println("\n=== CONTROLES PACMAN ===");
-        System.out.println("W = Arriba");
-        System.out.println("A = Izquierda");
-        System.out.println("S = Abajo");
-        System.out.println("D = Derecha");
-        System.out.println("Q = Salir");
-
-        do {
-            System.out.print("\nIngresa movimiento: ");
-            movimiento = teclado.next().toLowerCase();
-
-            switch (movimiento) {
-                case "w":
-                    posicionX--;
-                    break;
-                case "a":
-                    posicionY--;
-                    break;
-                case "s":
-                    posicionX++;
-                    break;
-                case "d":
-                    posicionY++;
-                    break;
-                case "q":
-                    System.out.println("Saliendo del control de Pacman...");
-                    break;
-                default:
-                    System.out.println("Instruccion no valida.");
-            }
-
-        } while (!movimiento.equals("q"));
     }
 }
