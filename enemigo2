@@ -1,10 +1,10 @@
-public class enemigo2 {
+ class enemigo2 {
     private int posicionX;
     private int posicionY;
 
-    public enemigo2(int x, int y) {
-        this.posicionX = x;
-        this.posicionY = y;
+    public enemigo2(int _x, int _y) {
+        this.posicionX = _x;
+        this.posicionY = _y;
     }
 
     public int getX() {
@@ -13,5 +13,13 @@ public class enemigo2 {
 
     public int getY() {
         return posicionY;
+    }
+
+    public void mover() {
+        posicionY++;
+
+        if (posicionY > 10) {
+            posicionY = 1;
+        }
     }
 }
