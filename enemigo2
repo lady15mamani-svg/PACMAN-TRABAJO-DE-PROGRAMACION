@@ -1,8 +1,8 @@
-static class enemigo3 {
+public class enemigo2 {
 
     private int x, y;
 
-    public enemigo3(int x, int y) {
+    public enemigo2(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -11,12 +11,10 @@ static class enemigo3 {
 
         int dir = (int)(Math.random() * 4);
 
-        switch (dir) {
-            case 0: x++; break;
-            case 1: x--; break;
-            case 2: y++; break;
-            case 3: y--; break;
-        }
+        if (dir == 0) x++;
+        if (dir == 1) x--;
+        if (dir == 2) y++;
+        if (dir == 3) y--;
 
         if (x <= 0) x = 1;
         if (y <= 0) y = 1;
