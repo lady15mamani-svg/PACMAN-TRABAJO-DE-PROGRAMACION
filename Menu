@@ -24,56 +24,67 @@ public class Menu {
             switch (opcion) {
 
                 case 1:
-                    System.out.println("\n======================================");
-                    System.out.println("      Cargando juego...");
-                    System.out.println("======================================");
-                    // Aquí llamas a tu juego
+                    System.out.println("\nCargando juego...");
+                    iniciarJuego();
                     break;
 
                 case 2:
-                    System.out.println("\n========== INSTRUCCIONES ==========");
-                    System.out.println("• Usa las flechas para moverte.");
-                    System.out.println("• Come todos los puntos del mapa.");
-                    System.out.println("• Evita a los enemigos.");
-                    System.out.println("• Si pierdes todas las vidas, termina el juego.");
-                    System.out.println("===================================");
-
-                    System.out.print("\nPresione ENTER para volver...");
-                    teclado.nextLine();
-                    teclado.nextLine();
+                    System.out.println("\nW A S D para moverse");
+                    System.out.println("Evita enemigos");
                     break;
 
                 case 3:
-                    System.out.println("\n========== CRÉDITOS ==========");
-                    System.out.println("      UNIVERSIDAD");
-                    System.out.println();
-                    System.out.println("Proyecto : PACMAN");
-                    System.out.println("Curso    : Programación");
-                    System.out.println();
-                    System.out.println("Desarrolladores:");
-                    System.out.println("★ Juan Elías");
-                    System.out.println("★ Saory");
-                    System.out.println("==============================");
-
-                    System.out.print("\nPresione ENTER para volver...");
-                    teclado.nextLine();
-                    teclado.nextLine();
+                    System.out.println("\nProyecto Pacman Java");
                     break;
 
                 case 4:
-                    System.out.println("\n======================================");
-                    System.out.println(" Gracias por jugar PACMAN");
-                    System.out.println(" ¡Hasta la próxima!");
-                    System.out.println("======================================");
+                    System.out.println("Saliendo...");
                     break;
 
                 default:
-                    System.out.println("\n⚠️ Opción inválida.");
-                    System.out.println("Intente nuevamente.");
+                    System.out.println("Opción inválida");
             }
 
         } while (opcion != 4);
+    }
 
-        teclado.close();
+    public static void iniciarJuego() {
+
+        Scanner teclado = new Scanner(System.in);
+
+        System.out.print("Filas: ");
+        int filas = teclado.nextInt();
+
+        System.out.print("Columnas: ");
+        int columnas = teclado.nextInt();
+
+        Tablero tablero = new Tablero(filas, columnas);
+
+        Pacman p = new Pacman(1, 1);
+
+        enemigo1 e1 = new enemigo1(3, 3);
+        enemigo2 e2 = new enemigo2(5, 5);
+        enemigo3 e3 = new enemigo3(2, 6);
+
+        while (p.estaVivo()) {
+
+            tablero.mostrarTablero(e1, e2, e3, p);
+
+            System.out.println("\nMover (W A S D) o Q:");
+            char mov = teclado.next().toLowerCase().charAt(0);
+
+            if (mov == 'q') break;
+
+            p.mover(mov, filas, columnas);
+
+            e2.mover(filas, columnas);
+            e3.mover(p, filas, columnas);
+
+            p.verificarColision(e1, e2, e3);
+        }
+
+        if (!p.estaVivo()) {
+            System.out.println("☠ GAME OVER ☠");
+        }
     }
 }
