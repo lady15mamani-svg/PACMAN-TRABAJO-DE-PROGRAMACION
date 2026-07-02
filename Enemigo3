@@ -1,25 +1,19 @@
-static class enemigo3 {
+public class enemigo3 {
 
     private int x, y;
 
-    public enemigo2(int x, int y) {
+    public enemigo3(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
     public void mover(Pacman p, int filas, int columnas) {
 
-        // 🔥 se mueve solo a veces (más jugable)
-        int chance = (int)(Math.random() * 2);
+        if (p.getX() > x) x++;
+        else if (p.getX() < x) x--;
 
-        if (chance == 0) {
-
-            if (p.getX() > x) x++;
-            else if (p.getX() < x) x--;
-
-            if (p.getY() > y) y++;
-            else if (p.getY() < y) y--;
-        }
+        if (p.getY() > y) y++;
+        else if (p.getY() < y) y--;
 
         if (x <= 0) x = 1;
         if (y <= 0) y = 1;
