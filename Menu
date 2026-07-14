@@ -1,0 +1,90 @@
+import java.util.Scanner;
+
+public class Menu {
+
+    public static void mostrarMenu() {
+
+        Scanner teclado = new Scanner(System.in);
+        int opcion;
+
+        do {
+
+            System.out.println("\n╔══════════════════════════════════════╗");
+            System.out.println("║          🎮 PACMAN EN JAVA 🎮        ║");
+            System.out.println("╠══════════════════════════════════════╣");
+            System.out.println("║  1. ▶️ Iniciar Juego                 ║");
+            System.out.println("║  2. 👻 Instrucciones                ║");
+            System.out.println("║  3. 👨‍💻 Créditos                    ║");
+            System.out.println("║  4. ❌ Salir                        ║");
+            System.out.println("╚══════════════════════════════════════╝");
+            System.out.print("👉 Seleccione una opción: ");
+
+            opcion = teclado.nextInt();
+
+            switch (opcion) {
+
+                case 1:
+                    System.out.println("\nCargando juego...");
+                    iniciarJuego();
+                    break;
+
+                case 2:
+                    System.out.println("\nW A S D para moverse");
+                    System.out.println("Evita enemigos");
+                    break;
+
+                case 3:
+                    System.out.println("\nProyecto Pacman Java");
+                    break;
+
+                case 4:
+                    System.out.println("Saliendo...");
+                    break;
+
+                default:
+                    System.out.println("Opción inválida");
+            }
+
+        } while (opcion != 4);
+    }
+
+    public static void iniciarJuego() {
+
+        Scanner teclado = new Scanner(System.in);
+
+        System.out.print("Filas: ");
+        int filas = teclado.nextInt();
+
+        System.out.print("Columnas: ");
+        int columnas = teclado.nextInt();
+
+        Tablero tablero = new Tablero(filas, columnas);
+
+        Pacman p = new Pacman(1, 1);
+
+        enemigo1 e1 = new enemigo1(3, 3);
+        enemigo2 e2 = new enemigo2(5, 5);
+        enemigo3 e3 = new enemigo3(2, 6);
+
+        while (p.estaVivo()) {
+
+            tablero.mostrarTablero(e1, e2, e3, p);
+
+            System.out.println("\nMover (W A S D) o Q:");
+            char mov = teclado.next().toLowerCase().charAt(0);
+
+            if (mov == 'q') break;
+
+            p.mover(mov, filas, columnas);
+
+            e2.mover(filas, columnas);
+            e3.mover(p, filas, columnas);
+
+            p.verificarColision(e1, e2, e3);
+        }
+
+        if (!p.estaVivo()) {
+            System.out.println("☠ GAME OVER ☠");
+        }
+    }
+}

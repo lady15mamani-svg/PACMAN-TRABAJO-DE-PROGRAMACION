@@ -1,0 +1,41 @@
+public class Pacman {
+
+    private int x, y;
+    private boolean vivo = true;
+
+    public Pacman(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public void mover(char c, int filas, int columnas) {
+
+        if (c == 'w') x--;
+        if (c == 's') x++;
+        if (c == 'a') y--;
+        if (c == 'd') y++;
+
+        if (x <= 0) x = 1;
+        if (y <= 0) y = 1;
+        if (x >= filas - 1) x = filas - 2;
+        if (y >= columnas - 1) y = columnas - 2;
+    }
+
+    public void verificarColision(enemigo1 e1, enemigo2 e2, enemigo3 e3) {
+
+        if ((x == e1.getX() && y == e1.getY()) ||
+            (x == e2.getX() && y == e2.getY()) ||
+            (x == e3.getX() && y == e3.getY())) {
+
+            vivo = false;
+            System.out.println("☠ TE HAN MATADO ☠");
+        }
+    }
+
+    public boolean estaVivo() {
+        return vivo;
+    }
+
+    public int getX() { return x; }
+    public int getY() { return y; }
+}

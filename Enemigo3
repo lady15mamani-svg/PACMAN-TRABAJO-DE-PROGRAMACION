@@ -1,0 +1,26 @@
+public class enemigo3 {
+
+    private int x, y;
+
+    public enemigo3(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public void mover(Pacman p, int filas, int columnas) {
+
+        if (p.getX() > x) x++;
+        else if (p.getX() < x) x--;
+
+        if (p.getY() > y) y++;
+        else if (p.getY() < y) y--;
+
+        if (x <= 0) x = 1;
+        if (y <= 0) y = 1;
+        if (x >= filas - 1) x = filas - 2;
+        if (y >= columnas - 1) y = columnas - 2;
+    }
+
+    public int getX() { return x; }
+    public int getY() { return y; }
+}

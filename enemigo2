@@ -1,0 +1,27 @@
+public class enemigo2 {
+
+    private int x, y;
+
+    public enemigo2(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public void mover(int filas, int columnas) {
+
+        int dir = (int)(Math.random() * 4);
+
+        if (dir == 0) x++;
+        if (dir == 1) x--;
+        if (dir == 2) y++;
+        if (dir == 3) y--;
+
+        if (x <= 0) x = 1;
+        if (y <= 0) y = 1;
+        if (x >= filas - 1) x = filas - 2;
+        if (y >= columnas - 1) y = columnas - 2;
+    }
+
+    public int getX() { return x; }
+    public int getY() { return y; }
+}
