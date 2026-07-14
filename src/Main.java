@@ -3,4 +3,4 @@ public class Main {
         Juego juego = new Juego();
         juego.iniciarJuego();
     }
-}2
+}
